@@ -201,14 +201,13 @@ header a:hover {
 footer {
     font-family: 'Arial', sans-serif; /* Police de l'en-tête */
     text-align: center;
-    background-color: #4CAF50;  /* Si vous voulez que le footer ait le même fond que l'entête */
     color: white;  /* Si vous souhaitez garder le texte blanc */
     padding: 10px;
 }
 
 /* Bouton personnalisé élégant */
 .custom-button {
-    font-family: 'Arial', sans-serif; /* Même police que le header */
+    font-family: 'Poppins', sans-serif; /* Même police que le header */
     font-size: 1rem;
     color: white; /* Couleur du texte */
     background: linear-gradient(45deg, #4CAF50, #3e8e41); /* Dégradé moderne */
