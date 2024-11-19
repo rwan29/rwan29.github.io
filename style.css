@@ -1,23 +1,199 @@
-// Exemple d'interaction simple pour l'animation au survol des cartes
-const cards = document.querySelectorAll('.card');
-
-cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'scale(1.05)';
-    });
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'scale(1)';
-    });
-});
-function openLightbox(imageSrc) {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    lightboxImage.src = imageSrc; // Charge l'image cliquée
-    lightbox.style.display = 'flex'; // Affiche la lightbox
+/* Style de l'en-tête */
+header {
+    background: linear-gradient(135deg, #0078A8, #00C6C6);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.style.display = 'none'; // Cache la lightbox
+/* Animation subtile dans le fond */
+header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    transform: rotate(45deg);
+    animation: spin 20s linear infinite;
+    z-index: 0;
 }
-;
+
+/* Animation lente */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Style du titre principal */
+header h1 {
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif; /* Téléchargez cette police depuis Google Fonts */
+    margin: 0;
+}
+
+/* Sous-titres */
+header p {
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    margin: 0.5rem 0;
+}
+
+/* Lien e-mail stylé */
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    transition: border-color 0.3s ease;
+}
+
+header a:hover {
+    border-color: white;
+}
+/* Miniatures */
+.thumbnail {
+    width: 400px;
+    height: auto;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 10px;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Lightbox */
+.lightbox {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border: 5px solid white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.flipbook-container {
+    width: 800px; /* Largeur du flipbook */
+    height: 600px; /* Hauteur du flipbook */
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ddd;
+    background: white;
+    overflow: hidden;
+}
+
+@media (max-width: 900px) {
+    .flipbook-container {
+        width: 100%;
+        height: 500px;
+    }
+}
+/* Style général pour la galerie */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Style pour chaque carte */
+.card {
+    display: flex;               /* Flexbox pour centrer le contenu */
+    justify-content: center;     /* Centre horizontalement */
+    align-items: center;         /* Centre verticalement */
+    width: 30%;                  /* Chaque carte occupe 30% de la largeur */
+    box-sizing: border-box;
+    border: 2px solid #ddd;
+    padding: 10px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour l'image dans la carte */
+.card img {
+    max-width: 100%;             /* L'image prend toute la largeur de la carte */
+    max-height: 100%;            /* L'image prend toute la hauteur de la carte */
+    object-fit: contain;        /* Garde les proportions de l'image */
+    border-radius: 4px;
+}
+/* Style pour le modal (fenêtre pop-up) */
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed; /* Positionné de manière fixe à l'écran */
+    z-index: 1; /* Il sera au-dessus du contenu principal */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largeur et hauteur de l'écran */
+    height: 100%;
+    overflow: auto; /* Permet de faire défiler si l'image est plus grande que l'écran */
+    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre avec transparence */
+}
+
+/* Style pour l'image dans le modal */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%; /* Limite la taille de l'image */
+    max-height: 80%;
+}
+
+/* Style pour le texte sous l'image */
+#caption {
+    text-align: center;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+}
+
+/* Style pour le bouton de fermeture du modal */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
