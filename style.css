@@ -128,3 +128,32 @@ header a:hover {
     }
 }
 
+/* Style général pour la galerie */
+.gallery {
+    display: flex;           /* Utilise flexbox pour aligner les cartes côte à côte */
+    flex-wrap: wrap;         /* Permet aux cartes de passer à la ligne suivante si l'espace est insuffisant */
+    justify-content: space-between; /* Ajoute de l'espace égal entre les cartes */
+    gap: 20px;               /* Espace entre les cartes */
+    padding: 20px;
+}
+
+/* Style pour chaque carte */
+.card {
+    width: 30%;              /* Chaque carte occupe environ 30% de la largeur du conteneur (3 cartes par ligne) */
+    box-sizing: border-box;  /* Pour inclure bordures et marges dans la largeur */
+    border: 2px solid #ddd; /* Bordure autour des cartes */
+    padding: 10px;
+    background: #f4f4f4;     /* Fond légèrement gris pour les cartes */
+    border-radius: 8px;      /* Coins arrondis */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Pour les images dans les cartes */
+.card img {
+    width: 100%;             /* Les images prennent toute la largeur de la carte */
+    height: auto;            /* Hauteur auto pour maintenir les proportions */
+    border-radius: 4px;
+}
+
+
