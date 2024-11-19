@@ -205,3 +205,56 @@ footer {
     color: white;  /* Si vous souhaitez garder le texte blanc */
     padding: 10px;
 }
+
+/* Bouton personnalisé élégant */
+.custom-button {
+    font-family: 'Arial', sans-serif; /* Même police que le header */
+    font-size: 1rem;
+    color: white; /* Couleur du texte */
+    background: linear-gradient(45deg, #4CAF50, #3e8e41); /* Dégradé moderne */
+    border: none; /* Pas de bordure */
+    border-radius: 50px; /* Forme arrondie */
+    padding: 12px 30px; /* Taille du bouton */
+    cursor: pointer; /* Curseur au survol */
+    text-transform: uppercase; /* Texte en majuscules */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Ombre élégante */
+    transition: all 0.3s ease; /* Animation douce pour les effets */
+    letter-spacing: 1px; /* Espacement entre les lettres */
+    position: relative;
+    overflow: hidden; /* Pour les effets d'animation */
+}
+
+/* Effet au survol */
+.custom-button:hover {
+    background: linear-gradient(45deg, #3e8e41, #367636); /* Dégradé changé */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Ombre augmentée */
+    transform: translateY(-2px); /* Léger soulèvement */
+}
+
+/* Effet au clic */
+.custom-button:active {
+    background: linear-gradient(45deg, #367636, #3e8e41); /* Dégradé inversé */
+    transform: translateY(1px); /* Enfoncement */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Réduction de l'ombre */
+}
+
+/* Animation de vague au clic */
+.custom-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.custom-button:active::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: none;
+}
