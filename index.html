@@ -1,49 +1,65 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Lien direct vers votre PDF Dropbox
-    const pdfURL = 'https://www.dropbox.com/scl/fi/29zhk1kdyl5kqpagz1n4n/M-moire-OpenStreetMap-Erwan-Levieux.pdf?rlkey=7y4ri84dcdkxruz45gddlcxja&st=gl7rcavw&w=1'; // Remplacez ce lien
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio de Cartes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
-    const flipbook = document.getElementById('pdfBook');
-    flipbook.innerHTML = ''; // Vide le conteneur pour ajouter les pages
 
-    // Charger le PDF avec PDF.js
-    const loadingTask = pdfjsLib.getDocument(pdfURL);
-    loadingTask.promise.then(pdf => {
-        // Nombre total de pages du PDF
-        const numPages = pdf.51;
 
-        // Pour chaque page du PDF, crée une div pour le flipbook
-        for (let pageNum = 1; pageNum <= numPages; pageNum++) {
-            pdf.getPage(pageNum).then(page => {
-                const viewport = page.getViewport({ scale: 1.5 }); // Ajuste le zoom
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-                
-                // Rendu de la page du PDF sur le canvas
-                page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                }).promise.then(() => {
-                    // Ajouter l'image (canvas) à Turn.js comme une page
-                    const pageDiv = document.createElement('div');
-                    pageDiv.classList.add('page');
-                    pageDiv.appendChild(canvas);
-                    flipbook.appendChild(pageDiv);
+</head>
+<body>
+    <header>
+        <header>
+    <div class="header-content">
+        <h1>Erwan LEVIEUX</h1>
+        <p>Géomaticien et Cartographe</p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:levieuxerwan.geomatique@gmail.com">levieuxerwan.geomatique@gmail.com</a></p>
 
-                    // Si toutes les pages sont chargées, initialiser Turn.js
-                    if (pageNum === numPages) {
-                        $('#pdfBook').turn({
-                            width: 800,
-                            height: 600,
-                            autoCenter: true,
-                            display: 'double',
-                            duration: 1000
-                        });
-                    }
-                });
-            });
-        }
-    }).catch(error => {
-        console.error('Erreur de chargement du PDF :', error);
-    });
+    </div>
+</header>
+    </header>
+
+    <div class="gallery">
+        <div class="card">
+            <img src="https://dl.dropboxusercontent.com/s/wfzox9j345vqlr9fyr1xb/reliefs-bretons-A3.png?rlkey=7wue0jrsfa0bjezuvu6bhpskn&st=0n70cdp9&dl=0" alt="Carte 1" class="thumbnail" onclick="openLightbox('https://dl.dropboxusercontent.com/s/wfzox9j345vqlr9fyr1xb/reliefs-bretons-A3.png?rlkey=7wue0jrsfa0bjezuvu6bhpskn&st=0n70cdp9&dl=0')">
+        </div>
+        <div class="card">
+            <img src="https://dl.dropboxusercontent.com/s/1p9c1jqq0efj57mtl9hkd/carte-reunion-ok.png?rlkey=6rcqmzqylkqapg10r53m9xv13&st=weocn2vo&dl=0" alt="Carte 2"class="thumbnail" onclick="openLightbox('https://dl.dropboxusercontent.com/s/1p9c1jqq0efj57mtl9hkd/carte-reunion-ok.png?rlkey=6rcqmzqylkqapg10r53m9xv13&st=weocn2vo&dl=0')">
+        </div>
+        <div class="card">
+            <img src="https://dl.dropboxusercontent.com/s/vo1478lujv20awt6lv3dx/carte-paris-d-f.png?rlkey=uhkx3uxsg8xfk09m2hq8om1w7&st=ecvlwxnn&dl=0" alt="Carte 3"class="thumbnail" onclick="openLightbox('https://dl.dropboxusercontent.com/s/vo1478lujv20awt6lv3dx/carte-paris-d-f.png?rlkey=uhkx3uxsg8xfk09m2hq8om1w7&st=ecvlwxnn&dl=0')">
+        </div>
+        <div class="card">
+            <img src="https://dl.dropboxusercontent.com/s/3ymc5468vdksefxdgo1f2/infographie-base-reflet.png?rlkey=3l1jmmjsx641nmr5sului5o9i&st=qm6rhvvv&dl=0" alt="Carte 4"class="thumbnail" onclick="openLightbox('https://dl.dropboxusercontent.com/s/3ymc5468vdksefxdgo1f2/infographie-base-reflet.png?rlkey=3l1jmmjsx641nmr5sului5o9i&st=qm6rhvvv&dl=0')">
+        </div>
+        <div class="card">
+            <img src="https://dl.dropboxusercontent.com/s/bxxh6rfa8abteu6b13qjg/carte-breig-go.png?rlkey=qt00h94a8zr6z43ffo7gemlas&st=blnpo47j&dl=0" alt="Carte 4"class="thumbnail" onclick="openLightbox('https://dl.dropboxusercontent.com/s/bxxh6rfa8abteu6b13qjg/carte-breig-go.png?rlkey=qt00h94a8zr6z43ffo7gemlas&st=blnpo47j&dl=0')">
+        </div>
+        <div class="card">
+            <img src="https://dl.dropboxusercontent.com/s/snz0l3le9j9b7bx5gm7ka/image.png?rlkey=rgp59bqoi8ke9vsgv3sc27btq&st=euo04bb4&dl=0" alt="Carte 4"class="thumbnail" onclick="openLightbox('https://dl.dropboxusercontent.com/s/snz0l3le9j9b7bx5gm7ka/image.png?rlkey=rgp59bqoi8ke9vsgv3sc27btq&st=euo04bb4&dl=0')">
+        </div>
+
+
+        <!-- Ajoute d'autres cartes selon tes besoins -->
+    </div>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImage" src="" alt="Carte agrandie">
+</div>
+<div id="pdfBook" class="flipbook-container">
+    <div>Chargement du contenu...</div>
+</div>
+
+    <footer>
+        <p>&copy; 2024 Mon Portfolio de Cartes</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+</body>
+</html>
