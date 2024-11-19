@@ -1,4 +1,4 @@
-/* Style de l'en-tête */
+/* Style de l'en-tÃªte */
 header {
     background: linear-gradient(135deg, #0078A8, #00C6C6);
     color: white;
@@ -40,7 +40,7 @@ header::after {
 /* Style du titre principal */
 header h1 {
     font-size: 3rem;
-    font-family: 'Poppins', sans-serif; /* Téléchargez cette police depuis Google Fonts */
+    font-family: 'Poppins', sans-serif; /* TÃ©lÃ©chargez cette police depuis Google Fonts */
     margin: 0;
 }
 
@@ -51,7 +51,7 @@ header p {
     margin: 0.5rem 0;
 }
 
-/* Lien e-mail stylé */
+/* Lien e-mail stylÃ© */
 header a {
     color: #ffffff;
     text-decoration: none;
@@ -81,7 +81,7 @@ header a:hover {
 
 /* Lightbox */
 .lightbox {
-    display: none; /* Caché par défaut */
+    display: none; /* CachÃ© par dÃ©faut */
     position: fixed;
     top: 0;
     left: 0;
@@ -127,7 +127,7 @@ header a:hover {
         height: 500px;
     }
 }
-/* Style général pour la galerie */
+/* Style gÃ©nÃ©ral pour la galerie */
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -158,16 +158,16 @@ header a:hover {
     object-fit: contain;        /* Garde les proportions de l'image */
     border-radius: 4px;
 }
-/* Style pour le modal (fenêtre pop-up) */
+/* Style pour le modal (fenÃªtre pop-up) */
 .modal {
-    display: none; /* Caché par défaut */
-    position: fixed; /* Positionné de manière fixe à l'écran */
+    display: none; /* CachÃ© par dÃ©faut */
+    position: fixed; /* PositionnÃ© de maniÃ¨re fixe Ã  l'Ã©cran */
     z-index: 1; /* Il sera au-dessus du contenu principal */
     left: 0;
     top: 0;
-    width: 100%; /* Largeur et hauteur de l'écran */
+    width: 100%; /* Largeur et hauteur de l'Ã©cran */
     height: 100%;
-    overflow: auto; /* Permet de faire défiler si l'image est plus grande que l'écran */
+    overflow: auto; /* Permet de faire dÃ©filer si l'image est plus grande que l'Ã©cran */
     background-color: rgba(0, 0, 0, 0.8); /* Fond sombre avec transparence */
 }
 
